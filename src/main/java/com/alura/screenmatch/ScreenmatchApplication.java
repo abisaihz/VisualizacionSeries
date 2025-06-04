@@ -1,11 +1,17 @@
 package com.alura.screenmatch;
 
+import com.alura.screenmatch.model.DatosEpisodio;
 import com.alura.screenmatch.model.DatosSerie;
+import com.alura.screenmatch.model.DatosTemporada;
+import com.alura.screenmatch.principal.Principal;
 import com.alura.screenmatch.service.ConsumoAPI;
 import com.alura.screenmatch.service.ConvierteDatos;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -16,12 +22,11 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var consumoApi = new ConsumoAPI();
-		var json = consumoApi.obtenerDatos("https://omdbapi.com/?t=game+of+thrones&apikey=acba02d5");
-		System.out.println(json);
-		ConvierteDatos conversor = new ConvierteDatos();
-		var datos = conversor.obtenerDatos(json, DatosSerie.class);
-		System.out.println(datos);
+		Principal principal = new Principal();
+		principal.muestraMenu();
+
+
+
 
 
 
