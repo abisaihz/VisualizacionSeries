@@ -35,3 +35,4 @@ build/
 
 ### Personal ###
 config.properties
+src/main/resources/config.properties
