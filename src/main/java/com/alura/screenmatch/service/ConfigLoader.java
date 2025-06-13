@@ -13,7 +13,7 @@ public class ConfigLoader {
 
             }
             properties.load(input);
-            System.out.println("Asignacion completa" + properties.getProperty("api_key"));
+
         } catch (Exception e) {
             System.out.println("Error al cargar el archivo de configuración: " + e.getMessage());
             throw new RuntimeException(e);
@@ -21,7 +21,7 @@ public class ConfigLoader {
     }
 
     public static String getProperty(String key) {
-        System.out.println("la clave es: " + properties.getProperty(key));
+
         return properties.getProperty(key);
     }
 }

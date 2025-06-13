@@ -21,8 +21,8 @@ public class Serie {
         this.totalDeTemporadas = datosSeries.totalDeTemporadas();
         this.evaluacion = OptionalDouble.of(Double.valueOf(datosSeries.evaluacion())).orElse(0);
         this.poster = datosSeries.poster();
-        this.sinopsis = ConsultaGemini.obtenerTraduccion(datosSeries.sinopsis());
-        //this.sinopsis = datosSeries.sinopsis();
+        //this.sinopsis = ConsultaGemini.obtenerTraduccion(datosSeries.sinopsis());
+        this.sinopsis = datosSeries.sinopsis();
         this.genero = Categoria.fromString(datosSeries.genero().split(",")[0]);
         this.actores = datosSeries.actores();
 

@@ -36,3 +36,5 @@ build/
 ### Personal ###
 config.properties
 src/main/resources/config.properties
+application.properties
+src/main/resources/application.properties
