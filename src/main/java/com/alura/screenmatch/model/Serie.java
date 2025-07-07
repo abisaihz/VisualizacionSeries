@@ -1,20 +1,33 @@
 package com.alura.screenmatch.model;
 
 import com.alura.screenmatch.service.ConsultaGemini;
+import jakarta.persistence.*;
 
 
+import java.util.List;
 import java.util.OptionalDouble;
 
-public class Serie {
+@Entity
+@Table(name= "series")
 
+public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+
+    @Column(unique = true)
     private String titulo;
     private Integer totalDeTemporadas;
     private Double evaluacion;
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String actores;
     private String poster;
     private String sinopsis;
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Episodio> episodios;
 
+    public Serie(){}
 
     public Serie(DatosSerie datosSeries){
         this.titulo = datosSeries.titulo();
@@ -26,6 +39,23 @@ public class Serie {
         this.genero = Categoria.fromString(datosSeries.genero().split(",")[0]);
         this.actores = datosSeries.actores();
 
+    }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
+        this.episodios = episodios;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getTitulo() {
@@ -93,6 +123,7 @@ public class Serie {
                 ", genero=" + genero +
                 ", actores='" + actores + '\'' +
                 ", poster='" + poster + '\'' +
-                ", sinopsis='" + sinopsis;
+                ", sinopsis='" + sinopsis + '\'' +
+                ", episodios='" + episodios;
     }
 }
